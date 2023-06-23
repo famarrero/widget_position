@@ -23,12 +23,19 @@ class OffsetReportingWidget extends SingleChildRenderObjectWidget {
   }
 }
 
+/// A subclass of RenderProxyBox that adds the ability to report offset changes in a widget.
 class RenderOffsetReportingBox extends RenderProxyBox {
+  /// Callback that will be executed when the offset of the widget has been changed
+  /// This callback is provided by the [OffsetReportingWidget]
   final ValueChanged<Offset>? offsetChanged;
+
+  /// The previous offset of the widget that will perform layout
   Offset? _currentOffset;
 
+  /// Constructor for the RenderOffsetReportingBox class.
   RenderOffsetReportingBox({this.offsetChanged});
 
+  /// Method called when widget layout is being performed.
   @override
   void performLayout() {
     super.performLayout();
